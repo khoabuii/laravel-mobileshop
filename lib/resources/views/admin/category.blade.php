@@ -6,19 +6,26 @@
 				<h1 class="page-header">Danh mục sản phẩm</h1>
 			</div>
 		</div><!--/.row-->
-
 		<div class="row">
 			<div class="col-xs-12 col-md-5 col-lg-5">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							Thêm danh mục
-						</div>
+                        </div>
+                        @include('noti.errors')
+                        @include('noti.success')
+                        <form action="" method="post">
+                            {{csrf_field()}}
 						<div class="panel-body">
 							<div class="form-group">
 								<label>Tên danh mục:</label>
     							<input type="text" name="name" class="form-control" placeholder="Tên danh mục...">
-							</div>
-						</div>
+                            </div>
+                            <div class='form-group'>
+                                <input type="submit" name='submit' class='form-control btn btn-primary' value='Thêm'>
+                            </div>
+                    </div>
+                        </form>
 					</div>
 			</div>
 			<div class="col-xs-12 col-md-7 col-lg-7">
@@ -34,55 +41,15 @@
 					                </tr>
 				              	</thead>
 				              	<tbody>
+                                      @foreach($cate_list as $cate)
 								<tr>
-									<td>iPhone</td>
+									<td>{{$cate->cate_name}}</td>
 									<td>
 			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
 			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
 			                  		</td>
 			                  	</tr>
-			                  	<tr>
-									<td>Samsung</td>
-									<td>
-			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
-			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
-			                  		</td>
-			                  	</tr>
-			                  	<tr>
-									<td>Nokia</td>
-									<td>
-			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
-			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
-			                  		</td>
-			                  	</tr>
-			                  	<tr>
-									<td>HTC</td>
-									<td>
-			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
-			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
-			                  		</td>
-			                  	</tr>
-			                  	<tr>
-									<td>LG</td>
-									<td>
-			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
-			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
-			                  		</td>
-			                  	</tr>
-			                  	<tr>
-									<td>Sony</td>
-									<td>
-			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
-			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
-			                  		</td>
-			                  	</tr>
-			                  	<tr>
-									<td>Motorola</td>
-									<td>
-			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
-			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
-			                  		</td>
-			                  	</tr>
+			                  	@endforeach
 				                </tbody>
 				            </table>
 						</div>

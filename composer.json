@@ -1,2 +1,5 @@
 {
+    "require": {
+        "laravel/helpers": "^1.2"
+    }
 }
