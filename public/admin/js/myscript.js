@@ -15,3 +15,14 @@ $(document).ready(function() {
         $('#img').click();
     });
 });
+function fadeoutfunction(){
+    setTimeout(function(){
+       $('[id$=messages]').fadeOut();
+    },5000);
+   }
+$("document").ready(function(){
+    setTimeout(function(){
+        $("p.alert").remove();
+    }, 7000 ); // 5 secs
+
+});

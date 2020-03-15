@@ -19,7 +19,7 @@ class AddTableProducts extends Migration
             $table->string("prod_name");
             $table->string("prod_slug");
             $table->integer("prod_price");
-            $table->integer("prod_price_old")->nullable();
+            $table->integer("prod_promotion_price")->nullable();
             $table->string("prod_img");
             $table->tinyInteger("prod_warranty");
             $table->string("prod_promotion");
