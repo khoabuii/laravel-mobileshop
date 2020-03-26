@@ -12,6 +12,7 @@
 
 				<div class="panel panel-primary">
 					<div class="panel-heading">Danh sách sản phẩm</div>
+                    @include('noti.success')
 					<div class="panel-body">
 						<div class="bootstrap-table">
 							<div class="table-responsive">
@@ -20,92 +21,54 @@
 									<thead>
 										<tr class="bg-primary">
 											<th>ID</th>
-											<th width="30%">Tên Sản phẩm</th>
-											<th>Giá sản phẩm</th>
-											<th width="20%">Ảnh sản phẩm</th>
-											<th>Danh mục</th>
-											<th>Tùy chọn</th>
+											<th width="25%">Tên Sản phẩm</th>
+											<th width="17%">Giá bán chính thức</th>
+                                            <th width="10%">Trạng thái</th>
+                                            <th width="12%">Tình trạng</th>
+                                            <th>Danh mục</th>
+                                            <th>Nổi bật</th>
+											<th width="12%">Tùy chọn</th>
 										</tr>
 									</thead>
 									<tbody>
+                                        @foreach($product as $prod)
 										<tr>
-											<td>1</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
+											<td>{{$prod->prod_id}}</td>
+											<td>{{$prod->prod_name}}
+                                            <img width="150px" src="{{asset('lib/storage/app/avatar/'.$prod->prod_img)}}" class="thumbnail" class="thumbnail">
+                                            </td>
 											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
+                                                @if($prod->prod_promotion_price)
+                                                {{number_format($prod->prod_promotion_price,0,',','.')}}VND
+                                                @else
+                                                {{number_format($prod->prod_price,0,',','.')}}VND
+                                                @endif
+                                            </td>
+
 											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                                @if(($prod->prod_status)==1)
+                                                Còn hàng
+                                                @else
+                                                Hết hàng
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{$prod->prod_condition}}
+                                            </td>
+                                            <td>{{$prod->cate_name}}</td>
+                                            <td>
+                                                @if($prod->prod_feature==1)
+                                                Có
+                                                @else
+                                                Không
+                                                @endif
+                                            </td>
+											<td>
+												<a href="{{asset('admin/product/edit')}}/{{$prod->prod_id}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
+												<a href="{{asset('admin/product/delete')}}/{{$prod->prod_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 											</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
-										<tr>
-											<td>6</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
+                                        @endforeach
 									</tbody>
 								</table>
 							</div>

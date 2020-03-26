@@ -1,3 +1,3 @@
-@if(session('thongbao'))
-<p class='alert alert-succes'>{{session('thongbao')}}</p>
+@if(session('success'))
+<p class='alert alert-success'>{{session('success')}}</p>
 @endif

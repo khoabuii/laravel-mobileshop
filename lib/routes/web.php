@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,7 +36,7 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::group(['prefix'=>'product'],function(){
             Route::get("/","productController@getProduct");
             Route::post('/',"productController@postProduct");
-//add
+            //add
             Route::get("add","productController@getAdd");
             Route::post("add","productController@postAdd");
             //edit product
@@ -43,6 +44,32 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::post("edit/{id}","productController@postEdit");
             //delete product
             Route::get("delete/{id}","productController@getDelete");
+            });
+
+            // blogs
+            Route::group(['prefix' => 'blog'], function () {
+                Route::get('/','blogController@getBlog');
+                Route::post('/','blogController@postBlog');
+                //add
+                Route::get('add','blogController@getAdd');
+                Route::post('add','blogController@postAdd');
+                //update
+                Route::get('edit/{id}','blogController@getEdit');
+                Route::post('edit/{id}','blogController@postEdit');
+                //delete
+                Route::get('delete/{id}','blogController@getDelete');
+                //
+                Route::resource('blog','blogController');
+            });
+            // slide
+            Route::group(['prefix' => 'slide'], function () {
+                Route::get('/','slideController@getSlide');
+                Route::get('add','slideController@getAdd');
+                Route::post('add','slideController@postAdd');
+
+                Route::get('edit/{id}','slideController@getEdit');
+                Route::post('edit/{id}','slideController@postEdit');
+                Route::get('delete/{id}','slideController@getDelete');
             });
         });
     });
