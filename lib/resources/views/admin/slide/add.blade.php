@@ -29,25 +29,20 @@
                                 </div>
 
                                 <div class="form-group" >
-                                    <label>Tóm tắt</label>
-                                    <textarea class="form-control" required name="summary"></textarea>
+                                    <label>Link</label>
+                                    <input required type="text" name="link" class="form-control">
                                 </div>
 
                                 <div class="form-group" >
-                                    <label>Nội dung bài viết</label>
-                                    <textarea required class="ckeditor" name="description"></textarea>
+                                    <label>Trạng thái</label>
+                                    <select required name="status" class="form-control">
+                                        <option value="1">Hiện</option>
+                                        <option value="0">Ẩn</option>
+                                    </select>
                                 </div>
-                                <script type="text/javascript">
-                                    var editor = CKEDITOR.replace('content',{
-                                        language:'vi',
-                                        filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?Type=Images',
-                                        filebrowserFlashBrowseUrl: '../../ckfinder/ckfinder.html?Type=Flash',
-                                        filebrowserImageUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                                        filebrowserFlashUploadUrl: '../../public/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-                                    });
-                                </script>
-                                <input type="submit" name="submit" value="Sửa" class="btn btn-primary">
-                                <a href="{{asset('admin/blog')}}" class="btn btn-danger">Hủy bỏ</a>
+
+                                <input type="submit" name="submit" value="Thêm" class="btn btn-primary">
+                                <a href="{{asset('admin/slide')}}" class="btn btn-danger">Hủy bỏ</a>
                             </div>
                         </div>
                         {{csrf_field()}}

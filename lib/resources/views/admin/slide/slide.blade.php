@@ -16,16 +16,16 @@
 					<div class="panel-body">
 						<div class="bootstrap-table">
 							<div class="table-responsive">
-								<a href="{{asset('admin/blog/add')}}" class="btn btn-primary">Thêm bài viết</a>
+								<a href="{{asset('admin/slide/add')}}" class="btn btn-primary">Thêm Slide</a>
 								<table class="table table-bordered" style="margin-top:20px;">
 									<thead>
 										<tr class="bg-primary">
 											<th>ID</th>
-											<th width="25%">Tên slide</th>
-											<th width="25%">Hình ảnh</th>
-                                            <th width="25%">Link</th>
-                                            <th width="12%">Trạng thái</th>
-											<th width="12%">Tùy chọn</th>
+											<th width="15%">Tên slide</th>
+											<th width="32%">Hình ảnh</th>
+                                            <th width="30%">Link</th>
+                                            <th width="8%">Trạng thái</th>
+											<th width="22%">Tùy chọn</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -43,7 +43,7 @@
                                                 {{$slide->slide_link}}
                                             </td>
                                             <td>
-                                                @if($slide->slide_status==1)
+                                                @if($slide->status==1)
                                                 Hiện
                                                 @else
                                                 Ẩn
@@ -52,7 +52,7 @@
 
 											<td>
 												<a href="{{asset('admin/slide/edit')}}/{{$slide->slide_id}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="{{asset('admin/slide/delete')}}/{{$slide->slide-id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+												<a href="{{asset('admin/slide/delete')}}/{{$slide->slide_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 											</td>
 										</tr>
                                         @endforeach

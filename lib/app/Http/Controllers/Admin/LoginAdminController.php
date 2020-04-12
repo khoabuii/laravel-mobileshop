@@ -18,7 +18,7 @@ class LoginAdminController extends Controller
         if(Auth::attempt(['email' => $email, 'password' => $password])){
            return redirect('admin/home');
         }else
-            return back()->with("Đăng nhập thất bại");
+            return back()->with('error',"Đăng nhập thất bại");
     }
     public function getLogout(){
         Auth::logout();

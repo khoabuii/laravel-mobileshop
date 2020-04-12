@@ -16,7 +16,7 @@ class CheckLogoutAdmin
     public function handle($request, Closure $next)
     {
         if(Auth::guest()){
-            return \redirect('login');
+            return \redirect('admin/login');
         }
         return $next($request);
     }

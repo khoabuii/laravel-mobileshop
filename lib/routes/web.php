@@ -12,19 +12,44 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+//home page
+Route::get('/','IndexController@getIndex');
+// cate product
+Route::get('/{id}-{cate_slug}','CateController@getCate');
+// blog
+Route::get('/blog','CateController@getBlog');
+
+//detail product
+Route::get('/product/{id}-{prod_slug}','detailController@getProduct');
+
+//product highlight
+Route::get('/product_feature','CateController@getFeature');
+// product new
+Route::get('/product_new','CateController@getNew');
+//detail blog
+Route::get('/blog/{id}-{prod_slug}','detailController@getBlog');
+
+//login homepage-google
+
+
+Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
+//admin page
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin'], function () {
-        Route::group(['prefix' => 'login'],function() {
+        Route::group(['prefix' => 'login','middleware'=>'CheckLoginAdmin'],function() {
             Route::get("/","LoginAdminController@getLogin");
             Route::post("/","LoginAdminController@postLogin");
         });
         Route::get('logout','LoginAdminController@getLogout');
-        Route::get('home','AdminController@getHome');
+        Route::group(['prefix'=>'home','middleware'=>'CheckLogoutAdmin'],function(){
+            Route::get('/','AdminController@getHome');
+        });
         // Category
-        Route::group(['prefix' => 'category'], function () {
+        Route::group(['prefix' => 'category','middleware'=>'CheckLogoutAdmin'], function () {
             Route::get("/","CateController@getCate");
             Route::post("/","CateController@postCate");
 
@@ -33,7 +58,7 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::post("edit/{id}","cateController@postEdit");
         });
         // Product
-        Route::group(['prefix'=>'product'],function(){
+        Route::group(['prefix'=>'product','middleware'=>'CheckLogoutAdmin'],function(){
             Route::get("/","productController@getProduct");
             Route::post('/',"productController@postProduct");
             //add
@@ -47,7 +72,7 @@ Route::group(['namespace' => 'Admin'], function () {
             });
 
             // blogs
-            Route::group(['prefix' => 'blog'], function () {
+            Route::group(['prefix' => 'blog','middleware'=>'CheckLogoutAdmin'], function () {
                 Route::get('/','blogController@getBlog');
                 Route::post('/','blogController@postBlog');
                 //add
@@ -62,7 +87,7 @@ Route::group(['namespace' => 'Admin'], function () {
                 Route::resource('blog','blogController');
             });
             // slide
-            Route::group(['prefix' => 'slide'], function () {
+            Route::group(['prefix' => 'slide','middleware'=>'CheckLogoutAdmin'], function () {
                 Route::get('/','slideController@getSlide');
                 Route::get('add','slideController@getAdd');
                 Route::post('add','slideController@postAdd');
