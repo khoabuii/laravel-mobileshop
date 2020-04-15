@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('homepage.layouts.master')
 
 @section('content')
 <div class="container">
@@ -6,8 +6,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Bạn cần đăng nhập</div>
+                @include('noti.success')
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" id="login-form" action="{{ url('/login') }}">
+                    <form class="form-horizontal" role="form" method="POST" id="login-form">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -54,7 +55,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i> Đăng nhập
                                 </button>
-                            <div class="btn btn-danger btn-block">
+                            <div class="btn fa fa-google btn-block">
                                 <a href="auth/google">Sign with Google</a>
                             </div>
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Bạn đã quên mật khẩu?</a>

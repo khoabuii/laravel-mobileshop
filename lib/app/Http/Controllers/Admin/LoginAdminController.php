@@ -13,15 +13,20 @@ class LoginAdminController extends Controller
         return view("admin.login");
     }
     public function postLogin(Request $request){
-        $email=$request->email;
-        $password=$request->password;
-        if(Auth::attempt(['email' => $email, 'password' => $password])){
-           return redirect('admin/home');
-        }else
-            return back()->with('error',"Đăng nhập thất bại");
+        $arr=['email'=>$request->email,'password'=>$request->password];
+        if(Auth::guard('admin')->attempt($arr)){
+            return redirect('admin/home');
+        }
+        else{
+            return back()->withInput()->with('error','Đăng nhập thất bại');
+        }
     }
-    public function getLogout(){
-        Auth::logout();
+    public function getLogout(Request $request){
+        Auth::guard('admin')->logout();
+        if (!Auth::check() && !Auth::guard('admin')->check()) {
+            $request->session()->flush();
+            $request->session()->regenerate();
+        }
         return redirect('admin/login');
     }
 }

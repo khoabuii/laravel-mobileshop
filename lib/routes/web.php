@@ -33,10 +33,16 @@ Route::get('/product_new','CateController@getNew');
 Route::get('/blog/{id}-{prod_slug}','detailController@getBlog');
 
 //login homepage-google
-
-
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
+//login homepage
+route::get('/login','Auth\LoginController@getLogin');
+route::post('/login','Auth\LoginController@postLogin');
+
+Route::get('/register','Auth\LoginController@getRegister');
+Route::post('/register','Auth\LoginController@postRegister');
+//logout
+Route::get('/logout','IndexController@getLogout');
 //admin page
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin'], function () {

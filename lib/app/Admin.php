@@ -2,14 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Customer extends Model
+class Admin extends Authenticatable
 {
-    //
     use Notifiable;
 
     /**
@@ -17,11 +15,10 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $table='customers';
-    protected $guard='customers ';
-    protected $primaryKey='cus_id';
+    protected $table='admin';
+    protected $guard='admin';
     protected $fillable = [
-         'cus_email', 'cus_password', 'google_id', 'fb_id'
+         'email', 'password',
     ];
 
     /**
@@ -30,7 +27,7 @@ class Customer extends Model
      * @var array
      */
     protected $hidden = [
-        'cus_password', 'remember_token',
+        'password', 'remember_token',
     ];
 
     /**

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('homepage.layouts.master')
 
 @section('content')
 <div class="container">
@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Họ tên</label>
+                            <label for="name" class="col-md-4 control-label">Tên</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name"  value="{{ old('name') }}">
@@ -28,7 +28,7 @@
                             <label for="email" class="col-md-4 control-label">Địa chỉ E-Mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input id="email" required type="email" class="form-control" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -69,7 +69,7 @@
                             <label for="phone" class="col-md-4 control-label">Số điện thoại</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control" name="phone"  value="{{ old('phone') }}">
+                                <input id="phone" type="number" class="form-control" name="phone"  value="{{ old('phone') }}">
 
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
@@ -95,7 +95,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Đăng ký 
+                                    <i class="fa fa-btn fa-user"></i> Đăng ký
                                 </button>
                             </div>
                         </div>

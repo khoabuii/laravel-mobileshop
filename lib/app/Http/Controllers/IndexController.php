@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use App\Slide;
+use App\Customer;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -31,7 +33,9 @@ class IndexController extends Controller
         ->get();
 
         return view('homepage.home',$data);
-
-
+    }
+    public function getLogout(){
+        Auth::logout();
+        return back();
     }
 }
