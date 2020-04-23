@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mobile Shop</title>
+<title>@yield('title')</title>
 <base href="{{asset('public/admin')}}/">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
@@ -40,7 +40,7 @@
 			<li><a href="{{asset('admin/category')}}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Danh mục sản phẩm</a></li>
             <li><a href="{{asset('admin/blog')}}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Blog</a></li>
 			<li><a href="{{asset('admin/slide')}}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Slide</a></li>
-			<li><a href="{{asset('admin/user')}}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Khách hàng</a></li>
+			<li><a href="{{asset('admin/customers')}}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Khách hàng</a></li>
             <li><a href="{{asset('admin/order')}}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Đơn đặt hàng</a></li>
 			<li><a href="{{asset('admin/feedback')}}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Feedback</a></li>
 

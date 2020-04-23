@@ -43,7 +43,7 @@
     {{-- <script type='text/javascript' src="{!!url('public/bootstrap/js/ie-emulation-modes-warning.js')!!}"></script> --}}
     <script type='text/javascript' src="{!!url('public/js/ads.js')!!}"></script>
 
-
+    <script type='text/javascript' src="{!!url('public/js/myscript.js')!!}"></script>
     <div id="divAdLeft" style="display: none; position: absolute;  margin-top: 50px;">
       <a href="http://api.hostinger.vn/redir/1309904" target="_blank"><img src="http://www.hostinger.vn/banners/vn/hostinger-160x600-1.gif" alt="Hosting Miễn Phí" border="0" width="170" height="600" /></a>
     </div>

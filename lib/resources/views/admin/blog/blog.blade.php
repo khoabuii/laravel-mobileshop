@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title','Blog')
 		@section('content')
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
@@ -17,9 +18,9 @@
 						<div class="bootstrap-table">
 							<div class="table-responsive">
 								<a href="{{asset('admin/blog/add')}}" class="btn btn-primary">Thêm bài viết</a>
-								<table class="table table-bordered" style="margin-top:20px;">
+								<table class="table table-striped" style="margin-top:20px;">
 									<thead>
-										<tr class="bg-primary">
+										<tr id="tbl-first-row" class="bg-primary">
 											<th>ID</th>
 											<th width="25%">Tiêu đề</th>
 											<th width="25%">Hình ảnh</th>

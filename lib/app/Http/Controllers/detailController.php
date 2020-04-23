@@ -7,7 +7,9 @@ use App\Category;
 use App\Slide;
 use App\Product;
 use App\Blog;
+use App\Comment;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class detailController extends Controller
 {
@@ -20,11 +22,31 @@ class detailController extends Controller
         view()->share($construct);
     }
     public function getProduct($id){
+        $data['comment']=Comment::where('com_prod',$id)->orderBy('com_id','desc')->get();
         $data['product']=Product::find($id);
         $data['product_lq']=Product::where('prod_cate',$data['product']->prod_cate)
         ->orderBy('prod_id','desc')
         ->take(3)->get();
         return view('homepage.detail.mobile',$data);
+    }
+    public function postCommentProduct(Request $request, $id){
+        $this->validate($request,
+        [
+            'comment'=>'required'
+        ],
+        [
+            'comment.required'=>'Bạn chưa nhập nội dung bình luận'
+        ]);
+
+        $id_prod=$id;
+        $comment=new Comment();
+        $comment->com_user=Auth::user()->id;
+        $comment->com_prod=$id_prod;
+        $comment->com_content=$request->comment;
+        $comment->save();
+
+        return back()->with('comment','Đã bình luận thành công');
+
     }
     public function getBlog($id){
         $data['blog']=Blog::find($id);
@@ -37,6 +59,28 @@ class detailController extends Controller
         ->orderBy('prod_id','desc')
         ->take(3)->get();
 
+        $data['comment']=Comment::where('com_blog',$id)->orderBy('com_id','desc')->get();
+
         return view('homepage.detail.news',$data);
     }
+
+    public function postCommentBlog(Request $request,$id){
+        $this->validate($request,
+        [
+            'comment'=>'required'
+        ],
+        [
+            'comment.required'=>'Bạn chưa nhập nội dung bình luận'
+        ]);
+
+        $id_blog=$id;
+        $comment=new Comment();
+        $comment->com_user=Auth::user()->id;
+        $comment->com_blog=$id_blog;
+        $comment->com_content=$request->comment;
+        $comment->save();
+
+        return back()->with('comment','Đã bình luận thành công');
+    }
+
 }

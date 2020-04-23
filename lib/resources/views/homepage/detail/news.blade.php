@@ -1,5 +1,12 @@
 @extends('homepage.layouts.new-master')
 @section('content')
+
+@if(session('comment'))
+<script>
+    alert('Bạn đã bình luận thành công')
+</script>
+
+@endif
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <h3 class="panel-title">
       <span class="glyphicon glyphicon-home"><a href="#" title=""> Home</a></span>
@@ -28,6 +35,33 @@
                       <span style="font-size:10px;color:#bdc3c7;">Sử lần cuối: {!!$blog->updated_at!!} </span></p>
 
                   </div>
+                    <!-- form comment -->
+                    <h2><small>Bình luận</small></h2>
+                      @if(Auth::user())
+                        <form role="form" method="post">
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                <textarea class="form-control" name="comment" rows="3"></textarea>
+                            </div>
+                            @if($errors->has('comment'))
+                                <span class="help-block">
+                                    <strong>{{$errors->first('comment')}}</strong>
+                                </span>
+                            @endif
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                        </form>
+                      @endif
+                            @foreach($comment as $cm)
+                            <div class="media">
+
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{$cm->user->name}}
+                                        <small>{{$cm->created_at}}</small>
+                                    </h4>
+                                    {{$cm->com_content}}
+                                </div>
+                            </div>
+                            @endforeach
                   </p>
                 </div>
               </div>
@@ -117,8 +151,10 @@
         <h3 class="panel-title">Fans Pages</h3>
       </div>
       <div class="panel-body">
-        Hãy <a href="#" title="">Like</a> facebook của Fshop để cập nhật tin mới nhất
+        Hãy <a href="#" title="">Like</a> facebook để cập nhật tin mới nhất
       </div>
+      <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fttth.khoabui%2F&tabs=272&width=340&height=180&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=235680100923976"
+      width="340" height="180" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
     </div> <!-- /fan pages myweb -->
   </div>
 </div>

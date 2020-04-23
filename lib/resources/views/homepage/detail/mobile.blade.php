@@ -1,5 +1,11 @@
 @extends('homepage.layouts.new-master')
 @section('content')
+@if(session('comment'))
+<script>
+    alert('Bạn đã bình luận thành công')
+</script>
+
+@endif
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <h3 class="panel-title">
       <span class="glyphicon glyphicon-home"><a href="{!!url('/')!!}" title=""> Home</a></span>
@@ -80,10 +86,39 @@
                     </div>
                     <div id="collapseTwo" class="accordion-body collapse">
                       <div class="accordion-inner">
-                          <!--  -->
+
                       </div>
+                      <!-- form comment -->
+                      <h2><small>Bình luận</small></h2>
+                      @if(Auth::user())
+                      <form role="form" method="post">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <textarea class="form-control" name="comment" rows="3"></textarea>
+                        </div>
+                        @if($errors->has('comment'))
+                            <span class="help-block">
+                                <strong>{{$errors->first('comment')}}</strong>
+                            </span>
+                        @endif
+                        <button type="submit" class="btn btn-primary">Gửi</button>
+                      </form>
+                      @endif
+
+                @foreach($comment as $cm)
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="media-heading">{{$cm->user->name}}
+                                    <small>{{$cm->created_at}}</small>
+                                </h4>
+                                {{$cm->com_content}}
+                            </div>
+                        </div>
+
+                @endforeach
                     </div>
-                    <button class="SeeMore btn-primary" data-toggle="collapse" href="#collapseTwo"><b class="caret"></b> Xem chi tiết</button>
+                    <button class="SeeMore btn-primary" data-toggle="collapse" href="#collapseTwo"><b class="caret"></b> Xem thêm bình luận</button>
                   </div>
                 </div>
               </div>
@@ -118,14 +153,14 @@
                       <span class="btn label-warning">{!!number_format($lq->prod_price)!!} VND</span>
                     @else
                       <label class="btn label-warning">
-                      <strike>{!!number_format($llq->prod_price)!!} VND</strike>
+                      <strike>{!!number_format($lq->prod_price)!!} VND</strike>
                     </label>
                         <p></p>
                       <span class="btn label-warning">{!!number_format($lq->prod_promotion_price)!!} VND</span>
                     @endif
                  </div>
                 <div class="intro pull-right">
-                  <h1><small class="title-mobile">{!!$lq->prod_name!!}</small></h1>
+                  <h1><a href="{!!url('/product/'.$lq->prod_id.'-'.$lq->prod_slug)!!}"><small class="title-mobile">{!!$lq->prod_name!!}</small></a></h1>
                   @if($lq->prod_status==1)
                   <li>Còn hàng</li>
                   @else
@@ -133,11 +168,7 @@
                   @endif
                   <span class="label label-info">Khuyễn mãi</span>
                     <li><span class="glyphicon glyphicon-ok-sign"></span>{!!$lq->prod_promotion!!}</li>
-
                 </div><!-- /div introl -->
-
-
-
                 <a href="" class="btn btn-success pull-right ">Thêm vào giỏ </a>
             </div> <!-- / div thumbnail -->
           </div>  <!-- /div col-4 -->
@@ -177,8 +208,9 @@
         <h3 class="panel-title">Fans Pages</h3>
       </div>
       <div class="panel-body">
-        Hãy <a href="#" title="">Like</a> facebook của MyWeb để cập nhật tin mới nhất
+        Hãy <a href="#" title="">Like</a> Facebook để cập nhật tin mới nhất
       </div>
+      <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fttth.khoabui%2F&tabs=272&width=340&height=180&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=235680100923976" width="340" height="180" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
     </div> <!-- /fan pages myweb -->
   </div>
 </div>

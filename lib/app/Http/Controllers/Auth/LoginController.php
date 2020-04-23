@@ -106,23 +106,24 @@ class LoginController extends Controller
         $this->validate($request,
         [
             'name'=>'required',
-            'email'=>'required|unique:customers,cus_email',
-            'password'=>'required',
-            'password-confirm'=>'same:password',
+            'email'=>'required|unique:users,email',
+            'password'=>'required|min:4|max:16',
+            'password_confirmation'=>'same:password',
             'phone'=>'required|min:9',
             'address'=>'required'
         ],
         [
             'email.required'=>'Bạn chưa nhập Email',
-            'password-confirm.same'=>'Mật khẩu không trùng khớp'
+            'password_confirmation.same'=>'Mật khẩu không trùng khớp'
         ]);
-        $customers=new User();
-        $customers->name=$request->name;
-        $customers->email=$request->email;
-        $customers->password=bcrypt($request->password);
-        $customers->numberPhone=$request->phone;
-        $customers->address=$request->address;
-        $customers->save();
+        $user=new User();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=bcrypt($request->password);
+        $user->numberPhone=$request->phone;
+        $user->address=$request->address;
+        $user->save();
+
         return redirect('/login')->with('success','Đăng kí thành công, xin mời đăng nhập');
     }
 }

@@ -1,5 +1,11 @@
 @extends('homepage.layouts.master')
 @section('content')
+@if(session('script'))
+<script>
+alert('Cảm ơn bạn đã góp ý')
+
+</script>
+@endif
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <h2 class="title-moble">Sản phẩm nổi bật</h2>
         <!-- danh muc dien thoai -->
@@ -21,7 +27,7 @@
                     @endif
                 </div>
                 <div class="intro pull-right">
-                 <a href="#"><h1><small class="title-mobile">{!!$fe->prod_name!!}</small></h1>  </a>
+                 <a href="{{url('/product/'.$fe->prod_id.'-'.$fe->prod_slug)}}"><h1><small class="title-mobile">{!!$fe->prod_name!!}</small></h1>  </a>
                   <li>
                       @if($fe->prod_status==1)
                       Còn hàng
@@ -79,12 +85,8 @@
                   <li><span class="glyphicon glyphicon-hand-right"></span> {!!$new->prod_promotion!!}</li>
 
                   <span class=" label-info">Tình trạng: <strong>{!!$new->prod_condition!!}</strong></span>
-
                 </div><!-- /div introl -->
               </div> <!-- /div bt -->
-
-
-
                 <a href="{!!url('gio-hang/addcart/'.$new->prod_id)!!}" class="btn btn-success pull-right ">Thêm vào giỏ </a>
             </div> <!-- / div thumbnail -->
           </div>  <!-- /div col-4 -->

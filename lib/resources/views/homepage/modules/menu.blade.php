@@ -19,6 +19,13 @@
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="main-mav-top">
+            <form class="form-inline ml-auto" method="get" action="search">
+            <div class="md-form my-0">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="result">
+                <button href="#!" class="btn btn-outline-white btn-md my-0 ml-sm-2" type="submit">Search</button>
+
+            </div>
+            </form>
             <ul class="nav navbar-nav">
               <li> <a href="{!!url('')!!}" title="" style="color: #FFFFFF;background-color: #2c3e50;"><b class="glyphicon glyphicon-home"></b> Trang chủ </a> </li>
               @foreach($cate as $cate)
@@ -145,7 +152,7 @@
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                         <i class="fa fa-google" aria-hidden="true">
-                        <a href="auth/google">Sign in with Google</a></i>
+                        <a href="{{url('auth/google')}}">Sign in with Google</a></i>
                 </div>
             </div>
           <input type="submit" name="login" class="btn btn-primary" value="Đăng nhập">

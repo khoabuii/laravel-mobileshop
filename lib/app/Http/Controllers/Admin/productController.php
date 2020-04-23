@@ -7,12 +7,15 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class productController extends Controller
 {
     //
     public function getProduct(){
-        $data['product']=Product::all();
+        $data['product']=DB::table('products')
+        ->join('category','products.prod_cate','=','category.cate_id')
+        ->orderBy('prod_id','desc')->get();
         return view('admin.products.product',$data);
     }
     public function getAdd(){
@@ -27,8 +30,6 @@ class productController extends Controller
         [
             'img.image'=>'Hình ảnh không đúng định dạng'
         ]);
-
-
         $product=new Product;
         $product->prod_name=$request->name;
         $product->prod_slug=str::slug($request->name);

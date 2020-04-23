@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('homepage.layouts.master')
 
 @section('content')
 	<div class="container">
@@ -9,23 +9,18 @@
 					<thead>
 						<tr><h1>Lịch sử mua hàng </h1></tr>
 						<tr>
-							<th> ID</th>										
-							<th> Mã đơn hàng</th>										
-							<th> Ngày đặt hàng</th>										
-							<th> Tổng tiền</th>										
+							<th> ID</th>
+							<th> Mã đơn hàng</th>
+							<th> Ngày đặt hàng</th>
+							<th> Tổng tiền</th>
 						</tr>
 					</thead>
 					<tbody>
 					<?php  $stt=0;?>
-						@foreach($data as $row)
-							<?php $stt++;?>
-							<tr>
-								<td>{!!$stt!!}</td>
-								<td>{!!$row->id!!}</td>
-								<td>{!!$row->created_at!!}</td>
-								<td>{!! number_format($row->total) !!} Vnđ</td>
-							</tr>
-						@endforeach							
+						{{--@foreach($data as $row) --}}
+						{{--	<?php $stt++;?> --}}
+							<!--  -->
+					{{--	@endforeach  --}}
 					</tbody>
 				</table>
 			</div>
@@ -34,7 +29,8 @@
 					<table class="table table-bordered table-hover text-center">
 						<thead>
 							<tr>
-								<th colspan="2"> Thông tin khách hàng : {!!Auth::user()->name !!}</th>										
+                                @include('noti.success')
+								<th colspan="2"> Thông tin khách hàng : {!!Auth::user()->name !!} (<a href="user/edit">Sửa thông tin</a>)</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -48,7 +44,7 @@
 							</tr>
 							<tr>
 								<td>Điện thoại</td>
-								<td>{!!Auth::user()->phone !!}</td>
+								<td>{!!Auth::user()->numberPhone !!}</td>
 							</tr>
 							<tr>
 								<td>Địa chỉ Khách hàng</td>

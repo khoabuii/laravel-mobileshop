@@ -43,6 +43,19 @@ Route::get('/register','Auth\LoginController@getRegister');
 Route::post('/register','Auth\LoginController@postRegister');
 //logout
 Route::get('/logout','IndexController@getLogout');
+
+// profile
+Route::get('/user','UserController@getUser');
+Route::get('user/edit','UserController@getUserEdit');
+Route::post('user/edit','UserController@postUserEdit');
+//search
+Route::get('search','IndexController@getSearch');
+// feedback
+Route::get('feedback','IndexController@getFeedback');
+Route::post('feedback','IndexController@postFeedback');
+//comment
+Route::post('/product/{id}-{prod_slug}','detailController@postCommentProduct');
+Route::post('/blog/{id}-{prod_slug}','detailController@postCommentBlog');
 //admin page
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin'], function () {
@@ -102,6 +115,17 @@ Route::group(['namespace' => 'Admin'], function () {
                 Route::post('edit/{id}','slideController@postEdit');
                 Route::get('delete/{id}','slideController@getDelete');
             });
+            //customer
+            Route::group(['prefix'=>'customers','middleware'=>'CheckLogoutAdmin'],function(){
+                Route::get('/','AdminController@getCustomers');
+                Route::get('delete/{id}','AdminController@getDeleteCustomers');
+            });
+
+            Route::group(['prefix' => 'feedback','middleware'=>'CheckLogoutAdmin'],function(){
+                 Route::get('/','AdminController@getFeedback');
+                 Route::get('delete/{id}','AdminController@getFeedbackDelete');
+            });
+
         });
     });
 

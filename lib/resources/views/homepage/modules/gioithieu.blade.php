@@ -3,7 +3,7 @@
   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 no-padding">
     <div class="row gioithieu">
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-        <a href="" title=""><strong>GIỚI THIỆU CÔNG TY</strong></a>
+        <a href="{{url('feedback')}}" title="feedback"><strong>ĐÁNH GIÁ CỬA HÀNG</strong></a>
           <li> <a href="#" title="">Các chính sách</a></li>
           <li> <a href="#" title="">Câu hỏi thường gặp</a></li>
           <li> <a href="#" title="">Hệ thống bảo hành</a></li>

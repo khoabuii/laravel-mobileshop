@@ -47,6 +47,7 @@
       <div class="panel-body">
         Hãy <a href="#" title="">Like</a> facebook của Fshop để cập nhật tin mới nhất
       </div>
+      <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fttth.khoabui%2F&tabs=272&width=340&height=180&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=235680100923976" width="340" height="180" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
     </div> <!-- /fan pages myweb -->
   </div>
 </div>

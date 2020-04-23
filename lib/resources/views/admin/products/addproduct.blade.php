@@ -20,6 +20,11 @@
                                 <div class="form-group" >
                                     <label>Tên sản phẩm</label>
                                     <input required type="text" name="name" class="form-control">
+                                    @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                                 <div class="form-group" >
                                     <label>Giá sản phẩm</label>
