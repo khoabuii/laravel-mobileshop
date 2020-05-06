@@ -39,7 +39,7 @@
 
 
 
-                <a href="{!!url('gio-hang/addcart/'.$prod->prod_id)!!}" class="btn btn-success pull-right ">Thêm vào giỏ </a>
+                <a href="{!!url('cart/add/'.$prod->prod_id)!!}" class="btn btn-success pull-right ">Thêm vào giỏ </a>
             </div> <!-- / div thumbnail -->
           </div>  <!-- /div col-4 -->
           @endforeach

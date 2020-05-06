@@ -43,7 +43,7 @@ alert('Cảm ơn bạn đã góp ý')
                 </div><!-- /div introl -->
               </div> <!-- /div bt -->
 
-                <a href="{!!url('gio-hang/addcart/'.$fe->prod_id)!!}" class="btn btn-success pull-right ">Thêm vào giỏ </a>
+                <a href="{!!url('cart/add/'.$fe->prod_id)!!}" class="btn btn-success pull-right ">Thêm vào giỏ </a>
             </div> <!-- / div thumbnail -->
           </div>  <!-- /div col-4 -->
           @endforeach
@@ -87,7 +87,7 @@ alert('Cảm ơn bạn đã góp ý')
                   <span class=" label-info">Tình trạng: <strong>{!!$new->prod_condition!!}</strong></span>
                 </div><!-- /div introl -->
               </div> <!-- /div bt -->
-                <a href="{!!url('gio-hang/addcart/'.$new->prod_id)!!}" class="btn btn-success pull-right ">Thêm vào giỏ </a>
+                <a href="{!!url('cart/add/'.$new->prod_id)!!}"  class="btn btn-success pull-right ">Thêm vào giỏ </a>
             </div> <!-- / div thumbnail -->
           </div>  <!-- /div col-4 -->
           @endforeach

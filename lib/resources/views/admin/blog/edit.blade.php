@@ -39,11 +39,11 @@
                                     <textarea required class="ckeditor" name="description">{{$blogs->blog_content}}</textarea>
                                 </div>
                                 <script type="text/javascript">
-                                    var editor = CKEDITOR.replace('content',{
+                                    var editor = CKEDITOR.replace('description',{
                                         language:'vi',
-                                        filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?Type=Images',
-                                        filebrowserFlashBrowseUrl: '../../ckfinder/ckfinder.html?Type=Flash',
-                                        filebrowserImageUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                        filebrowserImageBrowseUrl: '../../public/admin/ckfinder/ckfinder.html?Type=Images',
+                                        filebrowserFlashBrowseUrl: '../../public/admin/ckfinder/ckfinder.html?Type=Flash',
+                                        filebrowserImageUploadUrl: '../../public/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                                         filebrowserFlashUploadUrl: '../../public/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
                                     });
                                 </script>

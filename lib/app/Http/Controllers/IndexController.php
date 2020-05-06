@@ -9,16 +9,27 @@ use App\Product;
 use App\Slide;
 use App\User;
 use App\Feedback;
+use App\Cart;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
     //
+    protected $userID;
     public function __construct()
     {
         $construct['cate']=Category::all();
         $construct['cate1']=Category::all();
         $construct['slide']=Slide::all();
+
+        $this->userID = Auth::user()?Auth::user()->id:null;
+        $construct['cart1']=Cart::where('cart_user',$this->userID)->orderBy('cart_prod','desc')->get();
+        $construct['prod1']=DB::table('cart')
+        ->join('products','cart.cart_prod','=','products.prod_id')
+        ->where('cart_user',$this->userID)
+        ->orderBy('cart_id','desc')->get();
+
         view()->share($construct);
     }
 
@@ -33,7 +44,14 @@ class IndexController extends Controller
         ->take(10)
         ->get();
 
-        return view('homepage.home',$data);
+        $this->userID = Auth::user()?Auth::user()->id:null;
+        $construct['cart1']=Cart::where('cart_user',$this->userID)->orderBy('cart_prod','desc')->get();
+        $construct['prod1']=DB::table('cart')
+        ->join('products','cart.cart_prod','=','products.prod_id')
+        ->where('cart_user',$this->userID)
+        ->orderBy('cart_id','desc')->get();
+
+        return view('homepage.home',$data,$construct);
     }
     public function getLogout(){
         Auth::logout();

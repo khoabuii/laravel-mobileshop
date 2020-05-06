@@ -56,6 +56,14 @@ Route::post('feedback','IndexController@postFeedback');
 //comment
 Route::post('/product/{id}-{prod_slug}','detailController@postCommentProduct');
 Route::post('/blog/{id}-{prod_slug}','detailController@postCommentBlog');
+//cart
+Route::group(['prefix' => 'cart'], function () {
+    Route::get('/','cartController@getCart');
+    Route::get('add/{id}','cartController@getAdd');
+    Route::get('update','cartController@getUpdate');
+    Route::get('deleteAll/{id}','cartController@getDeleteAllUser');
+});
+
 //admin page
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin'], function () {

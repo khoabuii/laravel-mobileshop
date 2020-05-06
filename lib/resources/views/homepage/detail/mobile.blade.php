@@ -65,7 +65,7 @@
                         </div>
                       </div>
                       @if($product->prod_status ==1)
-                        <a href="{!!url('gio-hang/addcart/')!!}" title="" class="btn btn-large btn-block btn-primary" style="font-size: 20px;">Đặt hàng ngay</a>
+                        <a href="{!!url('cart/add/')!!}" title="" class="btn btn-large btn-block btn-primary" style="font-size: 20px;">Đặt hàng ngay</a>
                       @else
                         <a href="" title="" class="btn btn-large btn-block btn-primary disabled" style="font-size: 20px;">Tạm hết hàng</a>
                       @endif
@@ -169,7 +169,7 @@
                   <span class="label label-info">Khuyễn mãi</span>
                     <li><span class="glyphicon glyphicon-ok-sign"></span>{!!$lq->prod_promotion!!}</li>
                 </div><!-- /div introl -->
-                <a href="" class="btn btn-success pull-right ">Thêm vào giỏ </a>
+                <a href="{{url('cart/add/'.$lq->prod_id)}}" class="btn btn-success pull-right ">Thêm vào giỏ </a>
             </div> <!-- / div thumbnail -->
           </div>  <!-- /div col-4 -->
         @endforeach
