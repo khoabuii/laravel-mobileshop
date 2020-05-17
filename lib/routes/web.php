@@ -62,8 +62,11 @@ Route::group(['prefix' => 'cart'], function () {
     Route::get('add/{id}','cartController@getAdd');
     Route::get('update','cartController@getUpdate');
     Route::get('deleteAll/{id}','cartController@getDeleteAllUser');
+    Route::get('delete/{id}','cartController@getDeleteCart');
 });
 
+Route::get('checkout','cartController@getCheckout');
+Route::post('checkout','cartController@postCheckout');
 //admin page
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin'], function () {
@@ -132,6 +135,12 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::group(['prefix' => 'feedback','middleware'=>'CheckLogoutAdmin'],function(){
                  Route::get('/','AdminController@getFeedback');
                  Route::get('delete/{id}','AdminController@getFeedbackDelete');
+            });
+
+            Route::group(['prefix' => 'order','middleware'=>'CheckLogoutAdmin'], function () {
+                Route::get('/','AdminController@getOrder');
+                Route::get('view/{id}','AdminController@getViewOrder');
+                Route::post('view/{id}','AdminController@postViewOrder');
             });
 
         });

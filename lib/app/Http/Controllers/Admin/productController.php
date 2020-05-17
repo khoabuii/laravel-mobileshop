@@ -23,8 +23,7 @@ class productController extends Controller
         return view('admin.products.addproduct',$data);
     }
     public function postAdd(Request $request){
-        $this->validate($request,
-        [
+        $this->validate($request,[
             'img'=>'image'
         ],
         [
@@ -61,6 +60,12 @@ class productController extends Controller
         return view('admin.products.editproduct',$data);
     }
     public function postEdit(Request $request ,$id){
+        $this->validate($request,[
+            'img'=>'image'
+        ],
+        [
+            'img.image'=>'Hình ảnh không đúng định dạng'
+        ]);
         $product=new Product;
         $arr['prod_name']=$request->name;
         $arr['prod_slug']=str::slug($request->name);

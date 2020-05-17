@@ -55,7 +55,7 @@
                           <input type="text" class="qty text-center" value=" {{$prod->cart_quantity}}" style="width:30px; font-weight:bold; font-size:15px; color:blue;" readonly="readonly">
                         <a href="{!!url('cart/update/')!!}"><span class="glyphicon glyphicon-plus-sign"></span></a>
                       </td>
-                      <td><a href="{!!url('cart/delete/')!!}" onclick="return xacnhan('Xóa sản phẩm này ?')" ><span class="glyphicon glyphicon-remove" style="padding:5px; font-size:18px; color:red;"></span></a></td>
+                      <td><a href="{!!url('cart/delete/'.$prod->cart_id)!!}" onclick="return xacnhan('Xóa sản phẩm này ?')" ><span class="glyphicon glyphicon-remove" style="padding:5px; font-size:18px; color:red;"></span></a></td>
                       <td>
                       @if($prod->prod_promotion_price){
                           {{number_format($prod->prod_promotion_price)}}
@@ -76,7 +76,7 @@
                     <tr>
                       <td colspan="3"><strong>Tổng cộng :</strong> </td>
                       <td>{{$count}}</td>
-                      <td colspan="2" style="color:red;">{{1111}} Vnd</td>
+                      <td colspan="2" style="color:red;">{{number_format($sum)}} Vnd</td>
                     </tr>
                   </tbody>
                 </table>
@@ -116,16 +116,43 @@
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
        <!-- panel inffo 1 -->
-      <div class="panel panel-info">
+       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title text-center">Sản phẩm tương tự</h3>
         </div>
         <div class="panel-body no-padding">
 
-        <!-- sp tuong tu -->
+        @foreach($product_lq as $lq)
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+            <div class="thumbnail mobile">
 
-        </div>
-      </div> <!-- /panel info 2  quản cáo 1          -->
+                <div class="image-m pull-left">
+                  <img class="img-responsive" src="{!!url('lib/storage/app/avatar/'.$lq->prod_img)!!}" alt="">
+
+                  @if($lq->prod_promotion_price==null)
+                      <span class="btn label-warning">{!!number_format($lq->prod_price)!!} VND</span>
+                    @else
+                      <label class="btn label-warning">
+                      <strike>{!!number_format($lq->prod_price)!!} VND</strike>
+                    </label>
+                        <p></p>
+                      <span class="btn label-warning">{!!number_format($lq->prod_promotion_price)!!} VND</span>
+                    @endif
+                 </div>
+                <div class="intro pull-right">
+                  <h1><a href="{!!url('/product/'.$lq->prod_id.'-'.$lq->prod_slug)!!}"><small class="title-mobile">{!!$lq->prod_name!!}</small></a></h1>
+                  @if($lq->prod_status==1)
+                  <li>Còn hàng</li>
+                  @else
+                  <li>Hết hàng</li>
+                  @endif
+                  <span class="label label-info">Khuyễn mãi</span>
+                    <li><span class="glyphicon glyphicon-ok-sign"></span>{!!$lq->prod_promotion!!}</li>
+                </div><!-- /div introl -->
+                <a href="{{url('cart/add/'.$lq->prod_id)}}" class="btn btn-success pull-right ">Thêm vào giỏ </a>
+            </div> <!-- / div thumbnail -->
+          </div>  <!-- /div col-4 -->
+        @endforeach
 
     <!-- panel info 2  quản cáo 1          -->
     <div class="panel panel-info">

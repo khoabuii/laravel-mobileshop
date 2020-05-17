@@ -14,6 +14,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Thêm Bài viết</div>
                 <div class="panel-body">
+                @include('noti.errors')
                     <form method="post" enctype="multipart/form-data">
                         <div class="row" style="margin-bottom:40px">
                             <div class="col-xs-8">

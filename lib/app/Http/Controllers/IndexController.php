@@ -63,10 +63,23 @@ class IndexController extends Controller
         $result=str_replace(' ','%',$result);
         $data['search']=Product::where('prod_name','like','%'.$result.'%')->paginate(10);
         $data['count']=count($data['search']);
-        return view('homepage.category.search',$data);
+
+        $this->userID = Auth::user()?Auth::user()->id:null;
+        $construct['cart1']=Cart::where('cart_user',$this->userID)->orderBy('cart_prod','desc')->get();
+        $construct['prod1']=DB::table('cart')
+        ->join('products','cart.cart_prod','=','products.prod_id')
+        ->where('cart_user',$this->userID)
+        ->orderBy('cart_id','desc')->get();
+        return view('homepage.category.search',$data,$construct);
     }
     public function getFeedback(){
-        return view('homepage.feedback');
+        $this->userID = Auth::user()?Auth::user()->id:null;
+        $construct['cart1']=Cart::where('cart_user',$this->userID)->orderBy('cart_prod','desc')->get();
+        $construct['prod1']=DB::table('cart')
+        ->join('products','cart.cart_prod','=','products.prod_id')
+        ->where('cart_user',$this->userID)
+        ->orderBy('cart_id','desc')->get();
+        return view('homepage.feedback',$construct);
     }
 
     public function postFeedback(Request $request){

@@ -9,18 +9,21 @@
 					<thead>
 						<tr><h1>Lịch sử mua hàng </h1></tr>
 						<tr>
-							<th> ID</th>
+							<th> STT</th>
 							<th> Mã đơn hàng</th>
 							<th> Ngày đặt hàng</th>
 							<th> Tổng tiền</th>
 						</tr>
 					</thead>
 					<tbody>
-					<?php  $stt=0;?>
-						{{--@foreach($data as $row) --}}
-						{{--	<?php $stt++;?> --}}
-							<!--  -->
-					{{--	@endforeach  --}}
+                        @foreach($bill as $bill)
+                        <tr>
+                            <td></td>
+                            <td>{{$bill->bill_id}}</td>
+                            <td>{{$bill->created_at}}</td>
+                            <td>{{$bill->bill_total}}</td>
+                        </tr>
+                        @endforeach
 					</tbody>
 				</table>
 			</div>

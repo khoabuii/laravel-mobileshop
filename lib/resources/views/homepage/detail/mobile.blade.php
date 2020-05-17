@@ -65,7 +65,7 @@
                         </div>
                       </div>
                       @if($product->prod_status ==1)
-                        <a href="{!!url('cart/add/')!!}" title="" class="btn btn-large btn-block btn-primary" style="font-size: 20px;">Đặt hàng ngay</a>
+                        <a href="{!!url('cart/add/'.$product->prod_id)!!}" title="" class="btn btn-large btn-block btn-primary" style="font-size: 20px;">Đặt hàng ngay</a>
                       @else
                         <a href="" title="" class="btn btn-large btn-block btn-primary disabled" style="font-size: 20px;">Tạm hết hàng</a>
                       @endif

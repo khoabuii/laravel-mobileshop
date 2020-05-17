@@ -11,7 +11,7 @@ class slideController extends Controller
 {
     //
     public function getSlide(){
-        $data['slides']=Slide::all();
+        $data['slides']=Slide::all()->sortByDesc('slide_id');
         return view('admin.slide.slide',$data);
     }
     public function getAdd(){

@@ -47,15 +47,26 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group">
-                <input type="checkbox" name='changePassword' id='changePassword'>
-                </div>
 
+                        <!-- <input type="checkbox" name='changePassword' id='changePassword'>
+                        <label for="checkbox" class="col-md-4-control-label">Cập nhật mật khẩu</label>
+                        <script>
+                            $(document).ready(function(){
+                                $("#changePassword").change(function(){
+                                    if($(this).is(":checked")){
+                                        $(".password").removeAttr('disabled');
+                                    }else{
+                                        $(".password").attr('disabled','');
+                                    }
+                                });
+                            });
+                        </script> -->
 
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <label for="password" class="col-md-4 control-label">Mật khẩu</label>
                     <div class="col-md-6">
                         <input id="password" type="password" class="form-control password"  name="password">
+                        <p style="color:yellowgreen">Nếu không muốn cập nhật mật khẩu thì có thể bỏ qua</p>
                         @if ($errors->has('password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>
@@ -69,6 +80,7 @@
 
                     <div class="col-md-6">
                         <input id="password-confirm" type="password" class="form-control password" name="password_confirmation" >
+                        <p style="color:yellowgreen">Nếu không muốn cập nhật mật khẩu thì có thể bỏ qua</p>
                         @if ($errors->has('password_confirmation'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -114,16 +126,4 @@
 </div>
 </div>
 @endsection
-@section('script')
-        <script>
-            $(document).ready(function(){
-                $("#changePassword").change(function(){
-                    if($(this).is(":checked")){
-                        $(".password").removeAttr('disabled');
-                    }else{
-                        $(".password").attr('disabled','');
-                    }
-                });
-            });
-        </script>
-@endsection
+

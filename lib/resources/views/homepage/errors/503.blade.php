@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('homepage.layouts.master')
 @section('content')
    <div class="container-fluid">
        <div class="row">
@@ -19,14 +19,14 @@
                     <h3 class="lighter smaller">Chúng tôi tìm kiếm khắp nơi nhưng chúng tôi không thể tìm thấy nó!</h3>
 
                     <div >
-                        <form class="form-search">
+                        <!-- <form class="form-search">
                             <span class="input-icon align-middle">
                                 <i class="ace-icon fa fa-search"></i>
 
                                 <input type="text" class="search-query" placeholder="Nhập thông tin cần tìm..." />
                             </span>
                             <button class="btn btn-sm" type="button">Tìm kiếm!</button>
-                        </form>
+                        </form> -->
 
                         <div class="space"></div>
                         <h4 class="smaller">Hãy thử một trong các cách sau: </h4>

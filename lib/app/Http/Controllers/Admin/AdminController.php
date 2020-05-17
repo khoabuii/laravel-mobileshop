@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Bill;
 use App\Blog;
 use App\Category;
 use App\Comment;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\User;
 
 class AdminController extends Controller
@@ -33,6 +35,8 @@ class AdminController extends Controller
 
         $data['slide']=Slide::all();
         $data['count_slide']=count($data['slide']);
+
+        $data['order']=Bill::all();
         return view('admin.index',$data);
     }
 
@@ -51,5 +55,29 @@ class AdminController extends Controller
     public function getFeedbackDelete($id){
         Feedback::destroy($id);
         return back()->with('success','Xóa thành công');
+    }
+
+    public function getOrder(){
+        $data['order']=DB::table('bills')
+        ->join('users','bills.bill_user','=','users.id')
+        ->orderBy('bill_id','desc')->get();
+        return view("admin.order.order",$data);
+    }
+    public function getViewOrder($id){
+
+        $data['bill_detail']=DB::table('billsdetail')
+        ->where('bill_id',$id)
+        ->orderBy('detail_id','desc')
+        ->get();
+        $data['bill']=Bill::find($id);
+
+        return view('admin.order.vieworder',$data);
+    }
+
+    public function postViewOrder(Request $request, $id){
+        $status=new Bill();
+        $arr['bill_status']=$request->status;
+        $status::where('bill_id',$id)->update($arr);
+        return redirect('admin/order');
     }
 }

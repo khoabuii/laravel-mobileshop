@@ -1,6 +1,7 @@
 {
     "require": {
         "laravel/helpers": "^1.2",
-        "laravel/socialite": "^4.3"
+        "laravel/socialite": "^4.3",
+        "bumbummen99/shoppingcart": "^2.9"
     }
 }

@@ -11,6 +11,8 @@ use Exception;
 use App\User;
 use App\Category;
 use App\Slide;
+use App\Cart;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\SessionGuard;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
@@ -97,10 +99,22 @@ class LoginController extends Controller
         }
     }
     public function getLogin(){
-        return view('homepage.auth.login');
+        $this->userID = Auth::user()?Auth::user()->id:null;
+        $construct['cart1']=Cart::where('cart_user',$this->userID)->orderBy('cart_prod','desc')->get();
+        $construct['prod1']=DB::table('cart')
+        ->join('products','cart.cart_prod','=','products.prod_id')
+        ->where('cart_user',$this->userID)
+        ->orderBy('cart_id','desc')->get();
+        return view('homepage.auth.login',$construct);
     }
     public function getRegister(){
-        return view('homepage.auth.register');
+        $this->userID = Auth::user()?Auth::user()->id:null;
+        $construct['cart1']=Cart::where('cart_user',$this->userID)->orderBy('cart_prod','desc')->get();
+        $construct['prod1']=DB::table('cart')
+        ->join('products','cart.cart_prod','=','products.prod_id')
+        ->where('cart_user',$this->userID)
+        ->orderBy('cart_id','desc')->get();
+        return view('homepage.auth.register',$construct);
     }
     public function postRegister(Request $request){
         $this->validate($request,

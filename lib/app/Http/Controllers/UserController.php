@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Slide;
+use App\Cart;
+use App\Bill;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +22,30 @@ class UserController extends Controller
         view()->share($construct);
     }
     public function getUser(){
-        if(Auth::user())
-        return view('homepage.member.user');
+        $this->userID = Auth::user()?Auth::user()->id:null;
+        $construct['cart1']=Cart::where('cart_user',$this->userID)->orderBy('cart_prod','desc')->get();
+        $construct['prod1']=DB::table('cart')
+        ->join('products','cart.cart_prod','=','products.prod_id')
+        ->where('cart_user',$this->userID)
+        ->orderBy('cart_id','desc')->get();
+
+        if(Auth::user()){
+            $data['bill']=Bill::where('bill_user',$this->userID)
+            ->orderBy('bill_id','desc')->get();
+            return view('homepage.member.user',$construct,$data);
+        }
+
         else
         return redirect('/');
     }
     public function getUserEdit(){
-        return view('homepage.member.edit');
+        $this->userID = Auth::user()?Auth::user()->id:null;
+        $construct['cart1']=Cart::where('cart_user',$this->userID)->orderBy('cart_prod','desc')->get();
+        $construct['prod1']=DB::table('cart')
+        ->join('products','cart.cart_prod','=','products.prod_id')
+        ->where('cart_user',$this->userID)
+        ->orderBy('cart_id','desc')->get();
+        return view('homepage.member.edit',$construct);
     }
 
     public function postUserEdit(Request $request){

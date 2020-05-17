@@ -13,13 +13,19 @@ class blogController extends Controller
 {
     //
     public function getBlog(){
-        $data['blogs']=Blog::all();
+        $data['blogs']=Blog::all()->sortByDesc('blog_id');
         return view('admin.blog.blog',$data);
     }
     public function getAdd(){
         return view('admin.blog.add');
     }
     public function postAdd(Request $request){
+        $this->validate($request,[
+            'img'=>'image'
+        ],
+        [
+            'img.image'=>'Hình ảnh không đúng định dạng'
+        ]);
         $data=new Blog();
         $data->blog_title=$request->name;
         $data->blog_slug=str::slug($request->name);

@@ -3,7 +3,12 @@
 @if(session('script'))
 <script>
 alert('Cảm ơn bạn đã góp ý')
+</script>
+@endif
 
+@if(session('order'))
+<script>
+alert('Bạn đã đặt hàng thành công- Đơn hàng của bạn sẽ sớm được giao')
 </script>
 @endif
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
