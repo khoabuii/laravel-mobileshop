@@ -48,18 +48,18 @@
                       <td class="text-center">
 
                           @if (($prod->cart_quantity) >1)
-                          <a href="{!!url('gio-hang/update/')!!}"><span class="glyphicon glyphicon-minus"></span></a>
+                          <a href="{!!url('cart/updateReduct/'.$prod->cart_id)!!}"><span class="glyphicon glyphicon-minus"></span></a>
                          @else
-                            <a href="#"><span class="glyphicon glyphicon-minus"></span></a>
+                            <a href="{!!url('cart/updateReduct/'.$prod->cart_id)!!}"><span class="glyphicon glyphicon-minus"></span></a>
                         @endif
                           <input type="text" class="qty text-center" value=" {{$prod->cart_quantity}}" style="width:30px; font-weight:bold; font-size:15px; color:blue;" readonly="readonly">
-                        <a href="{!!url('cart/update/')!!}"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                        <a href="{!!url('cart/updatePlus/'.$prod->cart_id)!!}"><span class="glyphicon glyphicon-plus-sign"></span></a>
                       </td>
                       <td><a href="{!!url('cart/delete/'.$prod->cart_id)!!}" onclick="return xacnhan('Xóa sản phẩm này ?')" ><span class="glyphicon glyphicon-remove" style="padding:5px; font-size:18px; color:red;"></span></a></td>
                       <td>
-                      @if($prod->prod_promotion_price){
+                      @if($prod->prod_promotion_price)
                           {{number_format($prod->prod_promotion_price)}}
-                      }
+
                       @else
                       {{number_format($prod->prod_price)}}
                       @endif

@@ -63,6 +63,8 @@ Route::group(['prefix' => 'cart'], function () {
     Route::get('update','cartController@getUpdate');
     Route::get('deleteAll/{id}','cartController@getDeleteAllUser');
     Route::get('delete/{id}','cartController@getDeleteCart');
+    Route::get('updatePlus/{id}','cartController@getUpdateCartPlus');
+    Route::get('updateReduct/{id}','cartController@getUpdateCartReduct');
 });
 
 Route::get('checkout','cartController@getCheckout');

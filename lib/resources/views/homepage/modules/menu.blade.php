@@ -62,9 +62,9 @@
                         <td>{{$prod->prod_name}}</td>
 
                         <td>{{$prod->cart_quantity}}</td>
-                        <td>@if($prod->prod_promotion_price){
+                        <td>@if($prod->prod_promotion_price)
                           {{number_format($prod->prod_promotion_price)}}
-                      }
+
                       @else
                       {{number_format($prod->prod_price)}}
                       @endif

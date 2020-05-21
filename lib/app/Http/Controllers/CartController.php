@@ -166,4 +166,19 @@ class CartController extends Controller
         DB::table('cart')->where('cart_user',$this->userID)->delete();
         return redirect('/')->with('order','iiii');
     }
+    public function getUpdateCartPlus($id){
+        $update=Cart::FindorFail($id);
+        $update->cart_quantity++;
+        $update->save();
+        return back();
+    }
+    public function getUpdateCartReduct($id){
+        $update=Cart::FindorFail($id);
+        $update->cart_quantity--;
+        if($update->cart_quantity==0){
+            Cart::destroy($id);
+        }
+        $update->save();
+        return back();
+    }
 }
