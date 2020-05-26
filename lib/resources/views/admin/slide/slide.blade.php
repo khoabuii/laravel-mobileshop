@@ -53,7 +53,7 @@
 
                                         <td>
                                             <a href="{{asset('admin/slide/edit')}}/{{$slide->slide_id}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-                                            <a href="{{asset('admin/slide/delete')}}/{{$slide->slide_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                            <a href="{{asset('admin/slide/delete')}}/{{$slide->slide_id}}" onclick="return confirm('Chắc không?')" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
                                         </td>
                                     </tr>
                                     @endforeach

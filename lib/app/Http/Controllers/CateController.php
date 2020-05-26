@@ -74,6 +74,7 @@ class CateController extends Controller
     public function getNew(){
         $data['new_product']=DB::table('products')
         ->where('prod_condition','Mới 100%')
+        ->orWhere('prod_condition','Chính hãng')
         ->orderBy('prod_id','desc')
         ->paginate(10);
 

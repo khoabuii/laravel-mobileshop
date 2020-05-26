@@ -24,7 +24,7 @@ class detailController extends Controller
     }
     public function getProduct($id){
         $data['comment']=Comment::where('com_prod',$id)->orderBy('com_id','desc')->get();
-        $data['product']=Product::find($id);
+        $data['product']=Product::FindorFail($id);
         $data['product_lq']=Product::where('prod_cate',$data['product']->prod_cate)
         ->orderBy('prod_id','desc')
         ->take(3)->get();

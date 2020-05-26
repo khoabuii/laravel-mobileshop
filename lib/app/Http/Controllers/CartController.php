@@ -92,6 +92,38 @@ class CartController extends Controller
            return redirect('/');
         }
     }
+    public function getOrder($id){
+        try{
+            if(Auth::user()){
+            $id_prod=$id;
+            $cart=new Cart();
+            $cart->cart_user=Auth::user()->id;
+            $cart->cart_prod=$id_prod;
+            $uq=Cart::where('cart_user',Auth::user()->id)->where('cart_prod',$id_prod)->get();
+            if(count($uq)>0){
+                $i=DB::table('cart')->select('cart_quantity')->where('cart_prod',$id_prod);
+                $j=DB::table('cart')->select('cart_quantity')
+                ->where('cart_user',Auth::user()->id)->union($i)
+                ->first();
+                DB::table('cart')->where('cart_user',Auth::user()->id)
+                ->where('cart_prod',$id_prod)
+                ->update(['cart_quantity'=>$j->cart_quantity+1]); //chua xong
+                return back(); //con loi
+            }
+            else{
+                $cart->cart_quantity=1;
+            }
+            $cart->save();
+            return redirect('/cart');
+        }
+        else{
+            return redirect('login/');
+        }
+
+    }catch(Exception $e){
+           return redirect('/');
+        }
+    }
     public function getDeleteAllUser($id){
         DB::table('cart')->where('cart_user',$id)->delete();
         return back();

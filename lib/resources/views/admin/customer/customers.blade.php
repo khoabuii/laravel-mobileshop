@@ -55,7 +55,7 @@
                                         </td>
                                         <td>
 
-                                            <a href="{{asset('admin/customers/delete')}}/{{$cus->id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                            <a href="{{asset('admin/customers/delete')}}/{{$cus->id}}"  onclick="return confirm('Chắc không?')" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
                                         </td>
                                     </tr>
                                     @endforeach

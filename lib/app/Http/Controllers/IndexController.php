@@ -40,6 +40,7 @@ class IndexController extends Controller
         ->get();
 
         $data['new']=Product::where('prod_condition','Mới 100%')
+        ->orWhere('prod_condition','Chính hãng')
         ->orderBy('prod_id','desc')
         ->take(10)
         ->get();

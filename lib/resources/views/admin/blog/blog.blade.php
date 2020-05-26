@@ -49,7 +49,7 @@
 
 											<td>
 												<a href="{{asset('admin/blog/edit')}}/{{$blog->blog_id}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="{{asset('admin/blog/delete')}}/{{$blog->blog_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+												<a href="{{asset('admin/blog/delete')}}/{{$blog->blog_id}}"  onclick="return confirm('Chắc không?')" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 											</td>
 										</tr>
                                         @endforeach

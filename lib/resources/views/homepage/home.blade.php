@@ -78,7 +78,7 @@ alert('Bạn đã đặt hàng thành công- Đơn hàng của bạn sẽ sớm 
                     @endif
                 </div>
                 <div class="intro pull-right">
-                 <a href="#"><h1><small class="title-mobile">{!!$new->prod_name!!}</small></h1>  </a>
+                 <a href="{{url('/product/'.$new->prod_id.'-'.$new->prod_slug)}}"><h1><small class="title-mobile">{!!$new->prod_name!!}</small></h1>  </a>
                   <li>
                       @if($new->prod_status==1)
                       Còn hàng

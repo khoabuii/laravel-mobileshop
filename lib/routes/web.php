@@ -60,6 +60,7 @@ Route::post('/blog/{id}-{prod_slug}','detailController@postCommentBlog');
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/','cartController@getCart');
     Route::get('add/{id}','cartController@getAdd');
+    Route::get('order/{id}','cartController@getOrder');
     Route::get('update','cartController@getUpdate');
     Route::get('deleteAll/{id}','cartController@getDeleteAllUser');
     Route::get('delete/{id}','cartController@getDeleteCart');
