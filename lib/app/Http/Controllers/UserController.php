@@ -34,9 +34,15 @@ class UserController extends Controller
             ->orderBy('bill_id','desc')->get();
             return view('homepage.member.user',$construct,$data);
         }
-
         else
-        return redirect('/');
+            return redirect('/');
+    }
+    //cancel bill
+    public function getCancelBill($id){
+        $bill= new Bill();
+        $arr['bill_status']=3;
+        $bill::where('bill_id',$id)->update($arr);
+        return back();
     }
     public function getUserEdit(){
         $this->userID = Auth::user()?Auth::user()->id:null;

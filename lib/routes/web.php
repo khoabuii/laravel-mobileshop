@@ -67,7 +67,9 @@ Route::group(['prefix' => 'cart'], function () {
     Route::get('updatePlus/{id}','cartController@getUpdateCartPlus');
     Route::get('updateReduct/{id}','cartController@getUpdateCartReduct');
 });
-
+// cancel bill by User
+Route::get('/cancelbill/{id}','UserController@getCancelBill');
+//
 Route::get('checkout','cartController@getCheckout');
 Route::post('checkout','cartController@postCheckout');
 //admin page

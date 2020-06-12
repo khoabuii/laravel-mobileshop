@@ -33,14 +33,14 @@
                       <td class="text-center">
 
                           @if (($prod->cart_quantity) >1)
-                          <a href="{!!url('gio-hang/update/')!!}"><span class="glyphicon glyphicon-minus"></span></a>
+                          <!-- <a href="{!!url('gio-hang/update/')!!}"><span class="glyphicon glyphicon-minus"></span></a> -->
                          @else
-                            <a href="#"><span class="glyphicon glyphicon-minus"></span></a>
+                            <!-- <a href="#"><span class="glyphicon glyphicon-minus"></span></a> -->
                         @endif
                           <input type="text" class="qty text-center" value=" {{$prod->cart_quantity}}" style="width:30px; font-weight:bold; font-size:15px; color:blue;" readonly="readonly">
-                        <a href="{!!url('cart/update/')!!}"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                        <!-- <a href="{!!url('cart/update/')!!}"><span class="glyphicon glyphicon-plus-sign"></span></a> -->
                       </td>
-                      <td><a href="{!!url('cart/delete/')!!}" onclick="return xacnhan('Xóa sản phẩm này ?')" ><span class="glyphicon glyphicon-remove" style="padding:5px; font-size:18px; color:red;"></span></a></td>
+                      <!-- <td><a href="{!!url('cart/delete/')!!}" onclick="return xacnhan('Xóa sản phẩm này ?')" ><span class="glyphicon glyphicon-remove" style="padding:5px; font-size:18px; color:red;"></span></a></td> -->
                       <td>
                       @if($prod->prod_promotion_price){
                           {{number_format($prod->prod_promotion_price)}}
@@ -79,9 +79,14 @@
                       <label for="">Địa chỉ nhận hàng: </label>
                       <input class="form-control" required name="address" type="text" value="{{Auth::user()->address}}">
                 </div>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                       <label for="">Phone: </label>
-                      <input class="form-control" required name="phone" type="number" value="{{Auth::user()->phone}}">
+                      <input class="form-control" required name="phone" type="number" value="0{{Auth::user()->numberPhone}}">
+                      @if ($errors->has('phone'))
+                            <span class="help-block">
+                                <strong style="color:red">{{ $errors->first('phone') }}</strong>
+                            </span>
+                      @endif
                 </div>
                 <div class="form-group">
                   <label for="">Ghi chú: </label>

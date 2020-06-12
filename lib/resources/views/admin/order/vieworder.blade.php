@@ -54,7 +54,17 @@
                                 <td colspan="2" style="color:red;">{{number_format($bill->bill_total)}} VND</td>
                             </tr>
                             </tbody>
+                            @if($bill->bill_status==0)
+                                <p style="color:yellow">Đang xử lý</p>
+                            @elseif($bill->bill_status==1)
+                                <p style="color:yellowgreen">Xác nhận</p>
+                            @elseif($bill->bill_status==2)
+                                <p style="color:green">Đã giao</p>
+                            @else($bill->bill_status==3)
+                                <p style="color:red">Đã Hủy đơn</p>
+                            @endif
                         </table>
+                        @if(($bill->bill_status ==0) || ($bill->bill_status ==1))
                             <form action="" method="post">
                                 {{csrf_field()}}
                                 <tr>
@@ -84,6 +94,7 @@
                                     </td>
                                 </tr>
                             </form>
+                            @endif
                         </div>
                         </div>
                     <div class="clearfix"></div>

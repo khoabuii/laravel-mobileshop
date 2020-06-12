@@ -1,4 +1,5 @@
 @extends('homepage.layouts.new-master')
+@section('title','Giỏ hàng')
 @section('content')
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <h3 class="panel-title">

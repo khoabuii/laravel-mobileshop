@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Order</h1>
+            <h3>Tổng tiền đã thu: <i style="color:green;">{{number_format($sum)}} VND</i></h3>
         </div>
     </div><!--/.row-->
 
@@ -66,8 +67,7 @@
                                             @endif
                                         </td>
                                         <td>
-
-                                            <a  target='' href="{{asset('admin/order/view')}}/{{$order->bill_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xem chi tiết</a>
+                                            <a  target=''  href="{{asset('admin/order/view')}}/{{$order->bill_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xem chi tiết</a>
                                         </td>
                                     </tr>
                                     @endforeach

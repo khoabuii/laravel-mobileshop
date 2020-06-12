@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\UnionType;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -161,7 +162,7 @@ class CartController extends Controller
         ->where('cart_user',$this->userID)
         ->orderBy('cart_id','desc')->get();
         $data['count']=(count($data['prod']));
-        $sum=0;
+        $data['sum']=0;
         foreach($data['prod'] as $prod=>$value){
             $data['count']=(count($data['prod']));
             $quantity=$value->cart_quantity;
@@ -169,10 +170,16 @@ class CartController extends Controller
                 $total= ($quantity * $value->prod_promotion_price);
             else
                 $total= ($quantity * $value->prod_price);
-            $bill_total=$sum += $total;
+            $bill_total=$data['sum'] += $total;
 
         }
+        $this->validate($request,
+        [
+            'phone'=>'max:11|min:10'
+        ],
+        [
 
+        ]);
         $bill=new Bill();
         $bill->bill_user=Auth::user()->id;
         $bill->bill_total=$bill_total;
@@ -195,6 +202,19 @@ class CartController extends Controller
             $bill_detail->quantity=$prod->cart_quantity;
             $bill_detail->save();
         }
+        //$email=Auth::user()->email;
+
+        Mail::send('homepage.sendMail', $data, function ($message) {
+            $message->from('khoab1606808@gmail.com', 'Khoa Bui');
+
+            $message->to(Auth::user()->email,Auth::user()->email);
+            $message->cc('khoab1606808@gmail.com', 'Khoa Bui');
+
+
+            $message->subject('Xác nhận đơn hàng tại Mobile Shop');
+            //$message->priority(3);
+            //$message->attach('pathToFile');
+        });
         DB::table('cart')->where('cart_user',$this->userID)->delete();
         return redirect('/')->with('order','iiii');
     }

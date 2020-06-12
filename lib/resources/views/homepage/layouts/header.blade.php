@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{!!url('public/images/logo.png')!!}" alt="logo" width="50" height="20">
 
-    <title>Mobile-shop : Hệ thông bán hàng trực tuyến</title>
+    <title>@yield('title')</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{!!url('public/bootstrap/css/bootstrap.min.css')!!}" rel="stylesheet">

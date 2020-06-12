@@ -1,5 +1,5 @@
 @extends('homepage.layouts.master')
-
+@section('title','Đánh giá')
 @section('content')
 <div class="container">
     <div class="row">

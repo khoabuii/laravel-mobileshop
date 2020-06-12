@@ -38,6 +38,8 @@ class AdminController extends Controller
 
         $data['order']=Bill::all();
         return view('admin.index',$data);
+
+
     }
 
     public function getCustomers(){
@@ -61,7 +63,20 @@ class AdminController extends Controller
         $data['order']=DB::table('bills')
         ->join('users','bills.bill_user','=','users.id')
         ->orderBy('bill_id','desc')->get();
+
+        $data['sum']=0;
+        $data['bill_total']=DB::table('bills')
+        ->where('bill_status',2)->get('bill_total');
+        foreach($data['bill_total'] as $value){
+            $total=$value->bill_total;
+            //dd($total);
+            $data['sum'] +=$total;
+            //dd($sum);
+        }
+
+
         return view("admin.order.order",$data);
+
     }
     public function getViewOrder($id){
 

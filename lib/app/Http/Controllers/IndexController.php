@@ -36,7 +36,7 @@ class IndexController extends Controller
     public function getIndex(){
         $data['featured']=Product::where('prod_feature',1)
         ->orderBy('prod_id','desc')
-        ->take(10)
+        ->take(9)
         ->get();
 
         $data['new']=Product::where('prod_condition','Mới 100%')

@@ -1,4 +1,5 @@
 @extends('homepage.layouts.new-master')
+<head><title>{{$blog->blog_title}}</title></head>
 @section('content')
 
 @if(session('comment'))

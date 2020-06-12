@@ -1,4 +1,5 @@
 @extends('homepage.layouts.new-master')
+<head><title>{{$product->prod_name}}</title></head>
 @section('content')
 @if(session('comment'))
 <script>
@@ -185,7 +186,7 @@
       <div class="panel-body no-padding">
           @foreach($slide as $slide)
           @if($slide->status==1)
-        <a href="{{$slide->slide_link}}" title=""><img src="{!!url('lib/storage/app/slide/'.$slide->slide_img)!!}" alt="" width="100%" height="100%"> </a> <br>
+        <a href="{{$slide->slide_link}}" title=""><img src="{!!url('lib/storage/app/slide/'.$slide->slide_img)!!}" alt="" width="370px" height="200px"> </a> <br>
        @endif
         @endforeach
       </div>

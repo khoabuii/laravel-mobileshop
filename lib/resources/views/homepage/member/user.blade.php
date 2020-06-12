@@ -1,5 +1,5 @@
 @extends('homepage.layouts.master')
-
+@section('title','Thông tin tài khoản')
 @section('content')
 	<div class="container">
 	<hr>
@@ -9,19 +9,40 @@
 					<thead>
 						<tr><h1>Lịch sử mua hàng </h1></tr>
 						<tr>
-							<th> STT</th>
+
 							<th> Mã đơn hàng</th>
 							<th> Ngày đặt hàng</th>
-							<th> Tổng tiền</th>
+                            <th> Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Hủy đơn</th>
 						</tr>
 					</thead>
 					<tbody>
                         @foreach($bill as $bill)
                         <tr>
-                            <td></td>
+
                             <td>{{$bill->bill_id}}</td>
                             <td>{{$bill->created_at}}</td>
-                            <td>{{$bill->bill_total}}</td>
+                            <td>{{number_format($bill->bill_total)}} VND</td>
+                            <td>
+                                @if($bill->bill_status==0)
+                                    <p style="color:yellow">Đang xử lý</p>
+                                @elseif($bill->bill_status==1)
+                                    <p style="color:yellowgreen">Xác nhận</p>
+                                @elseif($bill->bill_status==2)
+                                    <p style="color:green">Xác nhận</p>
+                                @else
+                                    <p style="color:red">Đã hủy</p>
+                                @endif
+
+                            </td>
+                            <td>
+                                @if($bill->bill_status==0)
+                                <a href="{{url('/cancelbill/'.$bill->bill_id)}}" class="close .bg-danger" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </a>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
 					</tbody>
