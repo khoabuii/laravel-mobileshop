@@ -30,7 +30,7 @@
                                 @elseif($bill->bill_status==1)
                                     <p style="color:yellowgreen">Xác nhận</p>
                                 @elseif($bill->bill_status==2)
-                                    <p style="color:green">Xác nhận</p>
+                                    <p style="color:green">Đã giao</p>
                                 @else
                                     <p style="color:red">Đã hủy</p>
                                 @endif

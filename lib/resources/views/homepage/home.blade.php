@@ -8,7 +8,7 @@ alert('Cảm ơn bạn đã góp ý')
 
 @if(session('order'))
 <script>
-alert('Bạn đã đặt hàng thành công- Về Thông tin đơn hàng, chúng tôi đã gửi Email cho bạn')
+alert('Bạn đã đặt hàng thành công- Về Thông tin đơn hàng, chúng tôi đã gửi qua địa chỉ Email của bạn')
 </script>
 @endif
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -5,7 +5,13 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Order</h1>
-            <h3>Tổng tiền đã thu: <i style="color:green;">{{number_format($sum)}} VND</i></h3>
+          <label>  <h3>Tổng tiền đã thu: <i style="color:green;">{{number_format($sum)}} VND</i></h3>  </label>
+            <h4>Doanh thu tháng trước: (từ ngày <i>{{$fromDate}}</i> đến <i>{{$tillDate}}</i>): <i style="color:green;">{{number_format($totalMonthAfter)}} VND</i></h4>
+            <h4>Doanh thu tháng này: (từ ngày <i>{{$nowMonthDate}}</i> đến <i>{{$nowDate}}</i>): <i style="color:green;">{{number_format($totalTodayMonth)}} VND</i></h4>
+
+            <h4>Doanh thu hôm qua ({{$lastDay}}) : <i style="color:green;">{{number_format($totalYesterday)}} VND</i></h4>
+           <label> <h4>Doanh thu hôm nay ({{$nowDate}}) : <i style="color:green;">{{number_format($totalToday)}} VND</i></h4> </label>
+
         </div>
     </div><!--/.row-->
 
@@ -21,15 +27,16 @@
                             <table class="table table-striped" style="margin-top:20px;">
                                 <thead>
                                     <tr id="tbl-first-row" class="bg-primary">
-                                        <th>Mã đơn hàng</th>
+                                        <th>Mã DH</th>
                                         <th>Tên KH</th>
                                         <th>Email đặt hàng</th>
                                         <th>SĐT KH</th>
                                         <th>Địa chỉ</th>
                                         <th>Ghi chú</th>
                                         <th>Tổng tiền</th>
+                                        <!-- <th>Order Time</th> -->
                                         <th>Trạng thái</th>
-                                        <th>Tùy chọn</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,11 +62,13 @@
                                         <td>
                                             {{number_format($order->bill_total)}} VND
                                         </td>
+
+
                                         <td>
                                             @if($order->bill_status==0)
                                                 <p style="color:yellow">Đang xử lý</p>
                                             @elseif($order->bill_status==1)
-                                                <p style="color:yellowgreen">Xác nhận</p>
+                                                <p style="color:yellowgreen">Đang giao hàng</p>
                                             @elseif($order->bill_status==2)
                                                 <p style="color:green">Đã giao</p>
                                             @else($order->bill_status==3)
@@ -67,10 +76,11 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a  target=''  href="{{asset('admin/order/view')}}/{{$order->bill_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xem chi tiết</a>
+                                            <a  target=''  href="{{asset('admin/order/view')}}/{{$order->bill_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i><span class="glyphicon">&#x270f;</span></a>
                                         </td>
                                     </tr>
                                     @endforeach
+
                                 </tbody>
                             </table>
                         </div>

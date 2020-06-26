@@ -57,13 +57,14 @@
                             @if($bill->bill_status==0)
                                 <p style="color:yellow">Đang xử lý</p>
                             @elseif($bill->bill_status==1)
-                                <p style="color:yellowgreen">Xác nhận</p>
+                                <p style="color:yellowgreen">Đang giao hàng</p>
                             @elseif($bill->bill_status==2)
                                 <p style="color:green">Đã giao</p>
                             @else($bill->bill_status==3)
                                 <p style="color:red">Đã Hủy đơn</p>
                             @endif
                         </table>
+                        <b>Thời gian đặt hàng:</b> <i> {{$bill->created_at}} </i>
                         @if(($bill->bill_status ==0) || ($bill->bill_status ==1))
                             <form action="" method="post">
                                 {{csrf_field()}}
